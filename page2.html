@@ -1,1 +1,98 @@
 page2.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cormorant Infant', serif;
+            background-color: #b3e5fc; 
+            text-align: center; 
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            margin-top: 50px; 
+            font-size: 2.5em;
+            color: #333; 
+        }
+
+        section {
+            margin: 40px 0; /* Space between sections */
+        }
+
+        h2 {
+            font-size: 2em; /* Section title size */
+            color: #ff4081; /* Section title color */
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive grid */
+            gap: 15px; /* Space between images */
+            padding: 20px; /* Padding around the grid */
+        }
+
+        .gallery img {
+            width: 100%; /* Responsive images */
+            height: auto;
+            border-radius: 10px; /* Rounded corners */
+            transition: transform 0.3s; /* Animation */
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+
+        a {
+            display: inline-block; /* Center the link */
+            margin-top: 20px; /* Space above the link */
+            text-decoration: none; /* Remove underline */
+            color: #ff4081; /* Link color */
+            font-size: 1.2em; /* Font size */
+        }
+    </style>
+</head>
+<body>
+    <h1>Photo Gallery</h1>
+
+    <!-- Section 1: Nature Photos -->
+    <section>
+        <h2>Nature</h2>
+        <div class="gallery">
+            <img src="./assets/photos/nature1.jpg" alt="Nature Photo 1">
+            <img src="./assets/photos/nature2.jpg" alt="Nature Photo 2">
+            <img src="./assets/photos/nature3.jpg" alt="Nature Photo 3">
+        </div>
+    </section>
+
+    <!-- Section 2: Portraits -->
+    <section>
+        <h2>Portraits</h2>
+        <div class="gallery">
+            <img src="./assets/photos/portrait1.jpg" alt="Portrait Photo 1">
+            <img src="./assets/photos/portrait2.jpg" alt="Portrait Photo 2">
+            <img src="./assets/photos/portrait3.jpg" alt="Portrait Photo 3">
+        </div>
+    </section>
+
+    <!-- Section 3: Events -->
+    <section>
+        <h2>Events</h2>
+        <div class="gallery">
+            <img src="./assets/photos/event1.jpg" alt="Event Photo 1">
+            <img src="./assets/photos/event2.jpg" alt="Event Photo 2">
+            <img src="./assets/photos/event3.jpg" alt="Event Photo 3">
+        </div>
+    </section>
+
+    <a href="index.html">Back to Home</a> <!-- Link back to the main page -->
+</body>
+</html>
+
