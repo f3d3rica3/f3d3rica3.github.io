@@ -74,19 +74,23 @@ h2 {
 /* Lightbox Styles */
 .lightbox {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 999; /* Sit on top */
+    position: fixed;
+    z-index: 999;
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
-    display: flex; /* Use Flexbox */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Only apply flex properties when lightbox is active */
+.lightbox.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .lightbox-content {
-    max-width: 90%; /* Adjust based on your preference */
-    max-height: 90%; /* Prevent overflow */
+    max-width: 90%;
+    max-height: 90%;
 }

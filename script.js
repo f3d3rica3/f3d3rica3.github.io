@@ -1,13 +1,14 @@
 // Lightbox functionality
 function openLightbox(imgSrc) {
+    const lightbox = document.getElementById("lightbox");
     document.getElementById("lightbox-img").src = imgSrc;
-    document.getElementById("lightbox").style.display = "flex"; // Change to flex for centering
+    lightbox.classList.add('active');
 }
 
 function closeLightbox(event) {
-    // Check if the clicked element is the lightbox itself (not the image)
-    if (event.target === document.getElementById("lightbox")) {
-        document.getElementById("lightbox").style.display = "none";
+    const lightbox = document.getElementById("lightbox");
+    if (event.target === lightbox) {
+        lightbox.classList.remove('active');
     }
 }
 
