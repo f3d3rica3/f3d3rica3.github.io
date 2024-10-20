@@ -1,0 +1,92 @@
+body {
+    font-family: 'Cormorant Infant', serif;
+    background-color: #b3e5fc; 
+    text-align: center; 
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 50px; 
+    font-size: 2.5em;
+    color: #27b631; 
+}
+
+section {
+    margin: 40px 0; /* Space between sections */
+}
+
+h2 {
+    font-size: 2em; /* Section title size */
+    color: #136407; /* Section title color */
+}
+
+.slideshow-container {
+    position: relative;
+    max-width: 500px; /* Increased maximum width for larger images */
+    margin: auto; /* Center the slideshow */
+    overflow: hidden; /* Hide overflow */
+    height: 500px; /* Fixed height to accommodate the largest image and spacing */
+}
+
+.mySlides {
+    display: none; /* Hide all slides by default */
+    text-align: center;
+    height: 100%; /* Ensure the slideshow takes full height */
+}
+
+.mySlides img {
+    max-width: 100%; /* Ensure images fill the container */
+    max-height: 450px; /* Increased max height for larger images */
+    height: auto; /* Allow height to adjust */
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 10px; /* Adjust padding for a smaller button */
+    color: #136407; /* Green color for arrows */
+    font-weight: bold;
+    font-size: 22px; /* Increased font size for better visibility */
+    background-color: transparent; /* Remove background */
+    transform: translateY(-50%); /* Center the buttons vertically */
+    transition: opacity 0.2s ease; /* Smooth transition for hover */
+}
+
+.prev {
+    left: 30px; /* Moved the left button further out */
+}
+
+.next {
+    right: 30px; /* Moved the right button further out */
+}
+
+.photo-count {
+    position: absolute;
+    bottom: 10px; /* Position below the image */
+    left: 20px;
+    color: #136407; /* Set color to the same green shade */
+    font-size: 18px;
+}
+
+/* Lightbox Styles */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.lightbox-content {
+    max-width: 90%; /* Adjust based on your preference */
+    max-height: 90%; /* Prevent overflow */
+}
