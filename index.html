@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Federica's Fun Website</title>
+    <title>Federica</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
         /* Apply background color */
         body {
-    font-family: 'Cormorant Infant', serif; /* Apply the Google font */
-    background-color: #b3e5fc; /* Light pastel blue */
-    text-align: center; /* Center text and image */
-    margin: 0;
-    padding: 0;
-}
+            font-family: "Courier New", monospace;
+            background-color: #b3e5fc;
+            margin: 0;
+            padding: 40px;
+            color: navy;
+            line-height: 1.6;
+            text-align: center;
+        }
 
         /* Style the image */
         img {
@@ -29,12 +30,29 @@
         h1 {
             margin-top: 50px; /* Add space above the heading */
             font-size: 2.5em;
-            color: #333; /* Slightly darker text for contrast */
+            color: navy; /* Slightly darker text for contrast */
         }
 
         p {
             font-size: 1.2em;
-            color: #333;
+            color: navy;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 20px 20px 20px 0;
+            font-size: 1.2em;
+            color: navy;
+            text-decoration: none;
+            border-bottom: 1px solid navy;
+        }
+
+        .button:hover {
+            opacity: 0.7;
+        }
+
+        .navigation {
+            margin: 30px 0;
         }
     </style>
 </head>
@@ -45,12 +63,12 @@
     <!-- Image -->
     <img src="./assets/hearts/heart1.JPG" alt="Heart1" />
     <!-- Button to another page -->
-<a href="about.html" class="button">About</a>
-<a href="photos.html" class="button">Photo Gallery</a>
-<a href="va.html" class="button">Video Archive</a>
-<a href="thesis.html" class="button">Bachelor Thesis</a>
-
-
+    <div class="navigation">
+        <a href="about.html" class="button">About</a>
+        <a href="photos.html" class="button">Photo Gallery</a>
+        <a href="va.html" class="button">Video Archive</a>
+        <a href="thesis.html" class="button">Bachelor Thesis</a>
+    </div>
 
 </body>
 </html>

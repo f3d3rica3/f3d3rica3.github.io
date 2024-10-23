@@ -57,22 +57,183 @@
 </head>
 <body>
     <main>
+
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bachelor Thesis - Federica Marini</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cormorant Infant', serif;
+            background-color: #b3e5fc;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-top: 50px;
+            font-size: 2.5em;
+            color: #27b631;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: #136407;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .thesis-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+            padding: 20px;
+        }
+
+        .thesis-viewer {
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+
+        p {
+            line-height: 1.6;
+            font-size: 1.2em;
+            margin-bottom: 1em;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 10px;
+            text-decoration: none;
+            color: #136407;
+        }
+
+        img {
+            max-width: 50px;
+            vertical-align: middle;
+        }
+
+        .navigation {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .toc-list a {
+            color: #136407;
+            text-decoration: none;
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        .page-number {
+            float: right;
+            color: #666;
+        }
+
+        .chapter-title {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <main>
         <h1>Bachelor Thesis</h1>
 
-        <section class="abstract">
-            <h2>Abstract</h2>
-            <p>My thesis explores [your thesis topic]. Through [methodology/approach], I investigated [research question]. The findings suggest [key conclusions].</p>
-            <p>[Read the full thesis below.]</p>
-        </section>
+        <div class="thesis-content">
+            <section id="acknowledgements" class="section">
+                <h2>Acknowledgements</h2>
+                <p>First, I would like to thank my family, you taught me a love that is whole from the moment I was born and I have lived from my heart ever since. You guys are the source of my optimism in the face of climate change, so thank you!
+                </p>
+                <p>To Lucas, you are an inspiration in the way that I learn about climate change. I’ll always remember that night in the library when you saw the very last chapter of your book about climate change called “Loving”; you drew an arrow out, writing “FEDE” in all caps. I always told you love was part of this! 
+                </p>
+                <p>And to Tommy, thank you for inspiring all of my loving (and reading all of my drafts). You have shown me a love that spans lifetimes. </p>
+            </section>
 
-        <section class="thesis-viewer">
-            <div style="width: 100%; height: 80vh; margin-top: 40px;">
-                <embed src="./assets/thesis.pdf" type="application/pdf" width="100%" height="100%">
+            <section id="toc" class="section">
+                <h2>Table of Contents</h2>
+                <ul class="toc-list">
+                    <li><a href="#"><span>Introduction</span><span class="page-number">2</span></a></li>
+                    <li><a href="#"><span>Research and Methodology</span><span class="page-number">4</span></a></li>
+                    
+                    <li><a href="#"><span class="chapter-title">Chapter One: Indigeneity</span><span class="page-number">5</span></a></li>
+                    <li class="sub-section"><a href="#"><span>1.1 Defining Indigeneity</span><span class="page-number">5</span></a></li>
+                    <li class="sub-section"><a href="#"><span>1.2 Theories on Colonization – A Non-Indigenous Relationship to the Earth</span><span class="page-number">6</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>1.2.1 Malcom Ferdinand's "Double Fracture"</span><span class="page-number">6</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>1.2.2 An Earth Enslaved – The Environmental Fracture</span><span class="page-number">7</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>1.2.3 The Colonial Fracture</span><span class="page-number">8</span></a></li>
+                    <li class="sub-section"><a href="#"><span>1.3 From the Roots of Colonialism</span><span class="page-number">10</span></a></li>
+                    
+                    <li><a href="#"><span class="chapter-title">Chapter Two: Kincentric Ecology</span><span class="page-number">12</span></a></li>
+                    <li class="sub-section"><a href="#"><span>2.1 Love in the Context of Climate Change – An Indigenous Relationship to the Earth</span><span class="page-number">13</span></a></li>
+                    <li class="sub-section"><a href="#"><span>2.2 Introducing the Kwakwaka'wakw – Indigenous to the Pacific Northwest</span><span class="page-number">14</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>2.2.1 The Ancient Clam Gardens of the British Columbia</span><span class="page-number">16</span></a></li>
+                    <li class="sub-section"><a href="#"><span>2.3 The Krenak – Indigenous to Southeast Brazil</span><span class="page-number">18</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>2.3.1 The Collapse of the Mariana Dam in Minas Gerais</span><span class="page-number">20</span></a></li>
+                    <li class="sub-section"><a href="#"><span>2.4 The iTaukei of Serua Island– Indigenous to Fiji</span><span class="page-number">21</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>2.4.1 Resistance to Relocation</span><span class="page-number">21</span></a></li>
+                    
+                    <li><a href="#"><span class="chapter-title">Chapter Three – Solutions From Indigenous Science</span><span class="page-number">23</span></a></li>
+                    <li class="sub-section"><a href="#"><span>3.1 Willingness to Act (WTA)</span><span class="page-number">23</span></a></li>
+                    <li class="sub-section"><a href="#"><span>3.2 A Kincentric Economy?</span><span class="page-number">25</span></a></li>
+                    <li class="sub-section"><a href="#"><span>3.3 Indigenous Knowledge Based Solutions</span><span class="page-number">26</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>3.3.1 Biomimetics – Restoration and Anthropogenic Expansion of Animal Habitat</span><span class="page-number">27</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>3.3.2 Reforestation Through Direct Seeding in Brazil</span><span class="page-number">28</span></a></li>
+                    <li class="sub-sub-section"><a href="#"><span>3.3.3 Locally Managed Marine Areas (LMMAs) in the Pacific Ocean</span><span class="page-number">31</span></a></li>
+                    
+                    <li><a href="#"><span>Conclusion</span><span class="page-number">33</span></a></li>
+                    <li><a href="#"><span>Bibliography</span><span class="page-number">36</span></a></li>
+                </ul>
+            </section>
+
+            <section id="abstract" class="section">
+                <h2>Abstract</h2>
+                <p>The following literary analysis will examine the connection between Indigeneity and climate change, through the channel of colonization. In an effort to understand how Indigeneity influences the nature of the relationship between humans and the Earth, it presents three different Indigenous communities, most of which are located in the Global South and have great relevance in the discussion of climate change. Thus, it is crucial to understand how these communities perceive anthropogenic climate change and to listen to their adaptation and mitigation technologies and strategies that have come forth through necessity. This paper is a testament to how crucial it is for Indigenous science and knowledge to take the lead when it comes to implementing globally coordinated solutions to slow down and stop climate change.</p>
+            </section>
+
+            <div class="thesis-content">
+                <div class="section-title">INTRODUCTION</div>
+                
+                <p>This final work is dedicated to researching climate change through scientific and economic lenses, unified by an overarching theme of love. It will reflect on the relationship between humans and Earth, and how this dynamic dictates if well-being is predominantly measured by economic growth and whether such growth takes an exploitative nature. As stated by Ailton Krenak of Krenak ethnicity, the imbalance between humanity and the natural world comes from seeing human beings as the measure of all things and failing to value nature for just being.</p>
+                
+                <div class="quote">"Everything here is alive, the deer, the morning breeze, the grass, the mountain. You want to buy this land that is sacred to us. Do you not understand that you will die and be buried in it?"</div>
+                
+                <p>Humanity's relationship to the Earth varies greatly across the globe due to many factors such as endowment of natural resources, temperature, history, technological and industrial development, population density, and countless others. The main channel discussed in this paper, that arguably determines the nature of the relationship between humans and the Earth, is Indigeneity. Indigeneity has a diverse understanding; it also varies over time and across the globe. The understanding followed in this paper is broad but primarily agrees with the definition that a community is Indigenous if it is rooted through generations, with a continuity dating back to pre-colonial times, to the natural world that they live on.</p>
+                
+                <p>First introduced will be the Kwakwaka'wakw, Indigenous to the Pacific Coast of the Northwest of the United States. Second, come the Krenak, Indigenous to Southeast Brazil. And thirdly, are the iTaukei, Indigenous to the Serua Island of Fiji. As a result of geographical location to a coast or to the Global South, these are among the communities that are most vulnerable and already experiencing the worst of the effects of climate change. Therefore, adaptation and mitigation strategies have become almost embedded in that same culture, having emerged out of absolute necessity for survival.</p>
+                
+                <p>Covered in this paper will not only be the relevant stories and customs of Indigenous communities, and the now embedded tradition of adaptation to survive, but also their solutions to effectively do their part to prevent climate change. All goes to maintain that when drafting global strategies to adapt and mitigate climate change, Indigenous science must be seriously taken into account. Thus, this paper will do its part to clear out the stigmatized reservations surrounding Indigenous knowledge, often discounted in the academic and scientific spheres. Rather, the Indigenous example of a mutually loving relationship with the Earth, as well as Indigenous science, must be brought to the frontier of environmental research and solutions.</p>
+                
+                <p>So, how does love come into this fight? In discussion of the effects, causes, and real solutions of climate change, for as long as humans lack the ability to empathize with our humanity all the way on the other sides of the globe, globally coordinated action will not come. Within this same idea, for sustainability to be the dynamic and therefore intergenerational concept that it is, it requires that we preserve the Earth and the standards of living reaped today for future generations as they come. For this to be possible, we, the humans of today, must see past ourselves and extend our care far enough to those we cannot even name yet. That is how love comes into this fight.</p>
+    
+                <div class="section-title">RESEARCH AND METHODOLOGY</div>
+                
+                <p>This paper maintains a global standpoint, with specific references to the United States, Brazil, and the Republic of Fiji. The time frame is vast, pulling from centuries-old Indigenous knowledge and tradition, as well as anecdotes, theories, and reflections from the most relevant scholars and thinkers (Indigenous and not) in climate change research today. Reference and inspiration comes from countless sources, most notably the books of Ailton Krenak, Malcom Ferdinand, and the PhD dissertation of Dr. Lyla June Johnston. These works, and the rest of the consulted sources are detailed in the bibliography where they are organized by chapter.</p>
+                
+                <p>The first chapter of this literature review is called "Indigeneity", beginning with a discussion of its definition, and then bringing nuance to how Indigeneity might shape the nature of the relationship between people and the Earth. The second chapter is called "Kincentric Ecology" which essentially discusses an understanding of love in the context of climate change. And finally, the final chapter is called "Solutions From Indigenous Science", which presents various solutions to climate change that are directed by Indigenous communities.</p>
             </div>
-        </section>
+        </div>
 
         <nav class="navigation">
-            <img src="./assets/hearts/heart1.JPG" alt="Heart decoration">
             <a href="index.html" class="button">Home</a>
             <a href="about.html" class="button">About</a>
             <a href="photos.html" class="button">Photo Gallery</a>
