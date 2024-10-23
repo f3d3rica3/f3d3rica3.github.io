@@ -1,5 +1,5 @@
 body {
-    font-family: 'Cormorant Infant', serif;
+    font-family: 'Courier new', monospace;
     background-color: #b3e5fc; 
     text-align: center; 
     margin: 0;
@@ -9,7 +9,7 @@ body {
 h1 {
     margin-top: 50px; 
     font-size: 2.5em;
-    color: #27b631; 
+    color: navy; 
 }
 
 section {
@@ -18,7 +18,7 @@ section {
 
 h2 {
     font-size: 2em; /* Section title size */
-    color: #136407; /* Section title color */
+    color: navy; /* Section title color */
 }
 
 .slideshow-container {
@@ -47,7 +47,7 @@ h2 {
     top: 50%;
     width: auto;
     padding: 10px; /* Adjust padding for a smaller button */
-    color: #136407; /* Green color for arrows */
+    color: navy; /* Green color for arrows */
     font-weight: bold;
     font-size: 22px; /* Increased font size for better visibility */
     background-color: transparent; /* Remove background */
@@ -67,7 +67,7 @@ h2 {
     position: absolute;
     bottom: 10px; /* Position below the image */
     left: 20px;
-    color: #136407; /* Set color to the same green shade */
+    color: navy; /* Set color to the same green shade */
     font-size: 18px;
 }
 
