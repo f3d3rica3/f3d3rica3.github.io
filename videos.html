@@ -41,9 +41,7 @@
             font-size: 1.2em;
         }
 
-        a:hover {
-            text-decoration: underline;
-        }
+    
 
         .navigation {
             margin: 30px 0;
@@ -61,18 +59,30 @@
         .button:hover {
             opacity: 0.7;
         }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .toc-list a {
+            color: navy;
+            text-decoration: none;
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Video Archive</h1>
-
-        <ul>
-            <li><a href="personalvideos.html">Personal</a></li>
-            <li><a href="bocconi-jazz.html">Bocconi Students Jazz and Classical</a></li>
-            <li><a href="bocconi-classical.html">Miscellaneous</a></li>
-            <!-- Add more categories as needed -->
-        </ul>
 
         <div class="navigation">
             <a href="index.html" class="button">Home</a>
@@ -81,6 +91,15 @@
             <a href="videos.html" class="button">Video Archive</a>
             <a href="thesis.html" class="button">Bachelor Thesis</a>
         </div>
+
+        <h1>Video Archive</h1>
+
+        <ul>
+            <li><a href="personalvideos.html">Personal</a></li>
+            <li><a href="bocconi-jazz.html">Bocconi Students Jazz and Classical</a></li>
+            <li><a href="bocconi-classical.html">Miscellaneous</a></li>
+            <!-- Add more categories as needed -->
+        </ul>
     </div>
 </body>
 </html>
