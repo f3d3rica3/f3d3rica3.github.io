@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Video Archive - Federica</title>
+
     <style>
         body {
             font-family: "Courier New", monospace;
@@ -35,14 +36,19 @@
             margin: 20px 0;
         }
 
-        a {
+        /* Updated styles for the list links */
+        ul li a {
             color: navy;
             text-decoration: none;
             font-size: 1.2em;
+            transition: border-bottom 0.3s ease;
         }
 
-    
+        ul li a:hover {
+            border-bottom: 1px solid navy;
+        }
 
+        /* Standardized Navigation Styles */
         .navigation {
             margin: 30px 0;
         }
@@ -78,27 +84,24 @@
         .toc-list a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 <body>
+    <!-- Navigation moved outside the container -->
+    <div class="navigation">
+        <a href="index.html" class="button">Home</a>
+        <a href="about.html" class="button">About</a>
+        <a href="photos.html" class="button">Photo Gallery</a>
+        <a href="thesis.html" class="button">Bachelor Thesis</a>
+    </div>
+
     <div class="container">
-
-        <div class="navigation">
-            <a href="index.html" class="button">Home</a>
-            <a href="about.html" class="button">About</a>
-            <a href="photos.html" class="button">Photo Gallery</a>
-            <a href="videos.html" class="button">Video Archive</a>
-            <a href="thesis.html" class="button">Bachelor Thesis</a>
-        </div>
-
         <h1>Video Archive</h1>
 
         <ul>
             <li><a href="personalvideos.html">Personal</a></li>
             <li><a href="bocconi-jazz.html">Bocconi Students Jazz and Classical</a></li>
             <li><a href="bocconi-classical.html">Miscellaneous</a></li>
-            <!-- Add more categories as needed -->
         </ul>
     </div>
 </body>
