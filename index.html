@@ -56,6 +56,29 @@
         .navigation {
             margin: 30px 0;
         }
+
+        .back-button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: center;    /* Center the button vertically */
+    margin: 80px;           /* Add spacing around the button */
+}
+
+        .back-button {
+    background-color: transparent; /* Make the button background transparent */
+    border: 2px solid currentColor; /* Circular border matches the text color */
+    border-radius: 100%; /* Makes the button circular */
+    padding: 20px 25px; /* Adjust button size */
+    font-size: 1.2em; /* Text size */
+    font-family: "Courier New", monospace;
+    cursor: pointer; /* Pointer cursor on hover */
+    color: navy; /* Text and border color (adjust as needed) */
+    transition: all 0.3s ease; /* Add a smooth hover effect */
+}
+
+.back-button:hover {
+    opacity: 0.5;
+}
     </style>
 </head>
 <body>
@@ -71,6 +94,10 @@
         <a href="videos.html" class="button">Video Archive</a>
         <a href="research.html" class="button">Research</a>
         <a href="links.html" class="button">Inspiration</a>
+    </div>
+
+    <div class="back-button-container">
+        <button class="back-button" onclick="history.back()">Back</button>
     </div>
 
 </body>

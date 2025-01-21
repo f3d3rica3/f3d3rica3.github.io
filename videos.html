@@ -85,6 +85,13 @@
             text-decoration: underline;
         }
 
+        .back-button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    align-items: center;    /* Center the button vertically */
+    margin: 80px;           /* Add spacing around the button */
+}
+
         .back-button {
     background-color: transparent; /* Make the button background transparent */
     border: 2px solid currentColor; /* Circular border matches the text color */
@@ -126,7 +133,7 @@
     <div class="back-button-container">
         <button class="back-button" onclick="history.back()">Back</button>
     </div>
-    
+
 </body>
 </html>
 
