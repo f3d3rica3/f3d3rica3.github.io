@@ -27,25 +27,29 @@
             color: navy;
         }
 
-        h2 {
-            font-size: 1.8em;
-            font-weight: normal;
-            margin-top: 40px;
-            color: navy;
-        }
-
-        .video {
+        ul {
             margin: 40px 0;
+            padding-left: 20px;
         }
 
-        video {
-            width: 100%;
-            height: auto;
-    
+        ul li {
+            margin: 20px 0;
         }
 
-          /* Standardized Navigation Styles */
-          .navigation {
+        /* Updated styles for the list links */
+        ul li a {
+            color: navy;
+            text-decoration: none;
+            font-size: 1.2em;
+            transition: border-bottom 0.3s ease;
+        }
+
+        ul li a:hover {
+            border-bottom: 1px solid navy;
+        }
+
+        /* Standardized Navigation Styles */
+        .navigation {
             margin: 30px 0;
         }
 
@@ -61,6 +65,26 @@
         .button:hover {
             opacity: 0.7;
         }
+
+        .toc-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .toc-list li {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        .toc-list a {
+            color: navy;
+            text-decoration: none;
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
 
         .back-button-container {
     display: flex;
@@ -84,39 +108,31 @@
 .back-button:hover {
     opacity: 0.5;
 }
-      
+
     </style>
 </head>
 <body>
-
+    <!-- Navigation moved outside the container -->
     <div class="navigation">
         <a href="index.html" class="button">Home</a>
         <a href="about.html" class="button">About</a>
-        <a href="archive.html" class="button">Archive</a>
         <a href="research.html" class="button">Research</a>
+        <a href="links.html" class="button">Inspiration</a>
+      
     </div>
 
     <div class="container">
-        <h1>Intersectional Environmentalism</h1>
-
-        <!-- Example of embedded videos -->
-        <h2>Art and Climate Justice: Reimagining the Future</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/f6gJwtnh8dI?si=7eEqIMJgyNwrMrTb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-       
-        <h2>Feminist Global Advocacy for Climate Justice</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/JPpP2YqguKY?si=U0m0QdodsKcktLl1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <!-- Add more videos as needed -->
-
-        <h2>SHE Changes Climate - Official Full Film (2022)</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/ydbRQYYJbOY?si=gLkt3tx73317X0jt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-        <h2>Cows, Carbon and Climate | Joel Salatin | TEDxCharlottesville</h2>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/4Z75A_JMBx4?si=x6emf5rOT8fiI6O_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+        <h1>Creative Archive</h1>
+        <ul>
+            <li><a href="photos.html".html">Photo Gallery</a></li>
+            <li><a href="videos.html".html">Video Archive</a></li>
+            
+        </ul>
     </div>
 
     <div class="back-button-container">
         <button class="back-button" onclick="history.back()">Back</button>
     </div>
+    
 </body>
 </html>
