@@ -133,12 +133,28 @@
 .back-button:hover {
     opacity: 0.5;
 }
+
+/* Image formating */
+
+.gallery {
+    text-align: center; /* Centers the image horizontally */
+}
+
+.gallery-image {
+    width: 500px;
+    height: 300px;
+    /* Or use percentages for responsive design */
+    width: 80%;
+    max-width: 800px;
+    /* To maintain aspect ratio when setting only one dimension */
+    height: auto;
+}
     </style>
 </head>
 <body>
     <main>
         <nav class="navigation">
-            <a href="index.html" class="button">Home</a>
+            <a href="./index.html" class="button">Home</a>
             <a href="about.html" class="button">About</a>
             <a href="archive.html" class="button">Archive</a>
             <a href="research.html" class="button">Research</a>
@@ -152,12 +168,12 @@
         </div>
 
         <div>
-
-       <div class="gallery">
-            <img src="./assets/case/B9331DA0-9F68-4F63-B6D4-A5E6C24104CA_1_105_c.jpeg"/>
-        </div>
-
+            <div class="gallery">
+                <img src="/assets/case/B9331DA0-9F68-4F63-B6D4-A5E6C24104CA_1_105_c.jpeg" >
+            </div>
         <div>
+
+
         I believe that the heatlh of the Earth and the health of humans are extremely interconnected, 
         and so the fundamental belief of this project is that something that is bad for the Earth is likely also 
         bad for human health. 
