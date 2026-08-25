@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Indigeneities - Federica Marini</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: "Courier New", monospace;
+            background-color: #b3e5fc;
+            margin: 0;
+            padding: 40px;
+            color: navy;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-top: 50px;
+            font-weight: normal;
+            color: navy;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            font-weight: normal;
+            margin-top: 40px;
+            color: navy;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: navy;
+        }
+
+        .button {
+            display: inline-block;
+            margin: 20px 20px 20px 0;
+            font-size: 1.2em;
+            color: navy;
+            text-decoration: none;
+            border-bottom: 1px solid navy;
+        }
+
+        .button:hover {
+            opacity: 0.7;
+        }
+
+        .navigation {
+            margin: 30px 0;
+        }
+
+        /* Globe */
+        .globe-stage {
+            position: relative;
+            width: 1100px;
+            max-width: 100vw;
+            height: 430px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+
+        #community-globe {
+            position: absolute;
+            left: 50%;
+            top: 40px;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 300px;
+        }
+
+        .globe-connector {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .community-card {
+            position: absolute;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.92);
+            border: 1px solid navy;
+            padding: 18px 20px 20px 20px;
+            width: auto;
+            min-width: 210px;
+            max-width: 380px;
+            text-align: left;
+        }
+
+        .community-card.open {
+            display: block;
+        }
+
+        .community-card h3 {
+            font-size: 1.3em;
+            font-weight: normal;
+            margin: 0 24px 10px 0;
+        }
+
+        .community-card .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: none;
+            border: none;
+            color: navy;
+            font-family: "Courier New", monospace;
+            font-size: 1.2em;
+            cursor: pointer;
+            opacity: 0.6;
+        }
+
+        .community-card .close-btn:hover {
+            opacity: 1;
+        }
+
+        .community-card dl {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            column-gap: 12px;
+            row-gap: 6px;
+            margin: 0;
+        }
+
+        .community-card dt {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding-top: 4px;
+        }
+
+        .community-card dd {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        .globe-caption {
+            font-size: 0.85em;
+            color: #666;
+            margin: 10px auto 0 auto;
+            text-align: center;
+        }
+
+        .page-quote {
+            margin: 70px auto 0 auto;
+            max-width: 560px;
+            text-align: center;
+        }
+
+        .page-quote p {
+            font-family: "Cormorant Infant", serif;
+            font-style: italic;
+            font-size: 2em;
+            line-height: 1.3;
+            color: navy;
+            margin: 0;
+        }
+
+        .page-quote footer {
+            font-family: "Courier New", monospace;
+            font-size: 0.85em;
+            color: #666;
+            margin-top: 14px;
+        }
+
+        .essay {
+            max-width: 700px;
+            margin: 80px auto 0 auto;
+            text-align: left;
+        }
+
+        .essay h2 {
+            margin-top: 0;
+            line-height: 1.4;
+        }
+
+        .pillars {
+            list-style: none;
+            padding: 0;
+            max-width: 320px;
+            margin: 30px auto 40px auto;
+            counter-reset: pillar;
+        }
+
+        .pillars li {
+            counter-increment: pillar;
+            margin: 12px 0;
+            font-size: 1.2em;
+        }
+
+        .pillars li::before {
+            content: counter(pillar) ". ";
+        }
+
+        /* Community list */
+        .glossary-intro {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+
+        .back-button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 80px;
+        }
+
+        .back-button {
+            background-color: transparent;
+            border: 2px solid currentColor;
+            border-radius: 100%;
+            padding: 20px 25px;
+            font-size: 1.2em;
+            font-family: "Courier New", monospace;
+            cursor: pointer;
+            color: navy;
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="../index.html" class="button">Home</a>
+        <a href="../about.html" class="button">About</a>
+        <a href="../archive.html" class="button">Archive</a>
+        <a href="../research.html" class="button">Research</a>
+        <a href="../links.html" class="button">Inspiration</a>
+    </div>
+
+    <div class="container">
+        <h1>Global Indigeneities: Nature-Based Climate Solutions</h1>
+
+        <p class="glossary-intro">
+            Click a community on the globe to read more.
+        </p>
+
+        <div class="globe-stage" id="globe-stage">
+            <svg id="community-globe" viewBox="0 0 240 240" role="img" aria-label="Globe showing where featured communities are located"></svg>
+            <svg class="globe-connector" id="globe-connector"></svg>
+            <div class="community-card" id="community-card">
+                <button class="close-btn" id="card-close" aria-label="Close">&times;</button>
+                <h3 id="cc-name">[community name]</h3>
+                <dl>
+                    <dt>Homelands</dt><dd id="cc-homeland"></dd>
+                    <dt>A word for interconnectedness</dt><dd id="cc-word"></dd>
+                    <dt>The practice</dt><dd id="cc-practice"></dd>
+                    <dt>Learned from</dt><dd id="cc-source"></dd>
+                </dl>
+            </div>
+        </div>
+        <p class="globe-caption">dots mark homelands &mdash; drag to spin, click a dot to read</p>
+
+        <blockquote class="page-quote">
+            <p>&ldquo;What if our systems were designed to last forever?&rdquo;</p>
+            <footer>&mdash; Lyla June Johnston, PhD dissertation, 2022</footer>
+        </blockquote>
+
+        <section class="essay">
+            <h2>Love in the Context of Climate Change &mdash; An Indigenous Relationship to the Earth</h2>
+
+            <p>
+                Love in the context of climate change can best be understood from an Indigenous
+                perspective, through the shared values that they live by. While Indigenous communities
+                have various cultural and historical differences, they are united in their reciprocal
+                and symbiotic relationship with Mother Earth. In this relationship, there is no
+                separation between humans and the Earth, so their idea of family is extended to flora,
+                fauna, and all other living beings. It is with this sentiment that community is
+                embodied and their love is extended beyond their own people.
+            </p>
+
+            <p>
+                Kincentric ecology, or kincentricity, delineates this relationship of absolute
+                interconnectedness with all life forms, not just the human. However, the English
+                language and Indigenous languages do not have the same purposes, and thus have
+                different linguistic tools available. In fact, kincentric ecology is only our
+                understanding of such a relationship but holds little significance for someone of
+                Indigenous heritage and experience. Kincentric ecology is like the Rar&aacute;muri
+                concept of <em>iw&iacute;gara</em>, it is like the M&#257;ori concept of
+                <em>kaitiakitanga</em>, like the Din&eacute; concept of <em>h&oacute;zh&oacute;</em>;
+                it exists in some form for all Indigenous people as it is the very core of their way
+                of life. H&oacute;zh&oacute; (ho-ZHO), for example, is roughly translated from
+                Din&eacute; Bizaad to &ldquo;joy of being a part of the beauty of all creation&rdquo;.
+                It reflects a broader ethos of a people centered in connectedness, harmony, and
+                balance with the natural Earth. In a world increasingly individualistic, where the
+                separation between humans and Earth has been purposeful, most languages like English
+                do not carry the words to describe such a relationship. To live in harmony with the
+                Earth can only be learned through experience, traditions, and stories. It is much
+                more than a concept to be debated; kincentricity is an active form of loving.
+            </p>
+
+            <p>
+                Dr. Lyla June Johnston proposes four pillars underlining a kincentric relationship
+                with the Earth:
+            </p>
+
+            <ol class="pillars">
+                <li>Work with nature</li>
+                <li>Expand habitat</li>
+                <li>De-center humans</li>
+                <li>Design for perpetuity</li>
+            </ol>
+        </section>
+    </div>
+
+    <div class="back-button-container">
+        <button class="back-button" onclick="history.back()">Back</button>
+    </div>
+
+    <script src="../assets/data/world-outlines.js"></script>
+    <script>
+    (function () {
+        // Add one line per community: name, latitude (+ = North), longitude (+ = East),
+        // plus the text shown in the card when its dot is clicked.
+        var COMMUNITIES = [
+            {
+                name: "Krenak",
+                lat: -19.2,
+                lon: -41.5,
+                homeland: "Southeast of Brazil",
+                word: "Watu \u2014 \u201Cgrandfather\u201D",
+                practice: "They regard the sky as their father, the river as their grandfather, and the mountains as their mothers and sisters \u2014 recognizing all life as part of the same circle.",
+                source: "Ailton Krenak, Ideas to Postpone the End of the World (2020)"
+            },
+            {
+                name: "iTaukei",
+                lat: -18.3,
+                lon: 177.8,
+                homeland: "Serua Island, Fiji",
+                word: "Na qau vanua \u2014 \u201Cthe land that is part of me and sustains me\u201D",
+                practice: "[reciprocal or regenerative practice, nature-based solution]",
+                source: "[source]"
+            },
+            {
+                name: "Din\u00E9 (Navajo)",
+                lat: 36.0,
+                lon: -109.5,
+                homeland: "Southwestern United States",
+                word: "H\u00F3zh\u00F3 \u2014 \u201Cjoy of being a part of the beauty of all creation\u201D",
+                practice: "[reciprocal or regenerative practice, nature-based solution]",
+                source: "[source]"
+            },
+            {
+                name: "Kwakwa'wakw",
+                lat: 50.6,
+                lon: -126.9,
+                homeland: "Northern Vancouver Island and the adjacent mainland of British Columbia",
+                word: "[word and what it carries]",
+                practice: "Ancient clam gardens: rock walls built at the height of the clams\u2019 common growth zones catch sediment with the rolling tides, creating a greater surface area of habitat at these crucial levels.",
+                source: "[source]"
+            },
+            // { name: "...", lat: 0, lon: 0, homeland: "", word: "", practice: "", source: "" },
+        ];
+
+        var NS = "http://www.w3.org/2000/svg";
+        var CX = 120, CY = 120, R = 100;
+        var SENSITIVITY = 0.3; // degrees rotated per pixel dragged
+
+        var svg = document.getElementById("community-globe");
+        var stage = document.getElementById("globe-stage");
+        var connector = document.getElementById("globe-connector");
+        var card = document.getElementById("community-card");
+
+        var phi0 = 15 * Math.PI / 180;   // latitude at the center of the view
+        var lambda0 = -30 * Math.PI / 180; // longitude at the center of the view
+
+        function el(tag, attrs) {
+            var e = document.createElementNS(NS, tag);
+            for (var k in attrs) e.setAttribute(k, attrs[k]);
+            return e;
+        }
+
+        function project(latDeg, lonDeg) {
+            var lat = latDeg * Math.PI / 180;
+            var lon = lonDeg * Math.PI / 180;
+            var dlon = lon - lambda0;
+            var cosC = Math.sin(phi0) * Math.sin(lat) +
+                       Math.cos(phi0) * Math.cos(lat) * Math.cos(dlon);
+            return {
+                x: CX + R * Math.cos(lat) * Math.sin(dlon),
+                y: CY - R * (Math.cos(phi0) * Math.sin(lat) -
+                   Math.sin(phi0) * Math.cos(lat) * Math.cos(dlon)),
+                visible: cosC > 0
+            };
+        }
+
+        function trace(points) {
+            var d = "";
+            var penDown = false;
+            points.forEach(function (p) {
+                if (p.visible) {
+                    d += (penDown ? "L" : "M") + p.x.toFixed(2) + " " + p.y.toFixed(2);
+                    penDown = true;
+                } else {
+                    penDown = false;
+                }
+            });
+            return d;
+        }
+
+        function render() {
+            while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+            var wire = el("g", { stroke: "navy", fill: "none", "stroke-width": "0.6", opacity: "0.45" });
+            svg.appendChild(wire);
+
+            wire.appendChild(el("circle", { cx: CX, cy: CY, r: R }));
+
+            var land = el("g", { stroke: "navy", fill: "none", "stroke-width": "0.7", "stroke-linejoin": "round" });
+            svg.appendChild(land);
+
+            (window.WORLD_RINGS || []).forEach(function (ring) {
+                var pts = ring.map(function (p) { return project(p[1], p[0]); });
+                var d = trace(pts);
+                if (d) land.appendChild(el("path", { d: d }));
+            });
+
+            COMMUNITIES.forEach(function (c, i) {
+                var p = project(c.lat, c.lon);
+                if (!p.visible) return;
+                var hit = el("circle", {
+                    cx: p.x.toFixed(2), cy: p.y.toFixed(2),
+                    r: 12, fill: "transparent",
+                    "data-idx": i
+                });
+                hit.style.cursor = "pointer";
+                svg.appendChild(hit);
+
+                var dot = el("circle", {
+                    cx: p.x.toFixed(2), cy: p.y.toFixed(2),
+                    r: (i === selected ? 5 : 3.5),
+                    fill: "navy", stroke: "#b3e5fc", "stroke-width": "1",
+                    "data-idx": i
+                });
+                dot.style.cursor = "pointer";
+                var title = el("title", {});
+                title.textContent = c.name;
+                title.style.pointerEvents = "none";
+                dot.appendChild(title);
+                svg.appendChild(dot);
+            });
+
+            updateCard();
+        }
+
+        function dotStagePos(c) {
+            var p = project(c.lat, c.lon);
+            var g = svg.getBoundingClientRect();
+            var s = stage.getBoundingClientRect();
+            var scale = g.width / 240;
+            return {
+                x: g.left - s.left + p.x * scale,
+                y: g.top - s.top + p.y * scale
+            };
+        }
+
+        function updateCard() {
+            if (selected < 0) {
+                card.classList.remove("open");
+                connector.innerHTML = "";
+                return;
+            }
+            var c = COMMUNITIES[selected];
+            document.getElementById("cc-name").textContent = c.name;
+            document.getElementById("cc-homeland").textContent = c.homeland;
+            document.getElementById("cc-word").textContent = c.word;
+            document.getElementById("cc-practice").textContent = c.practice;
+            document.getElementById("cc-source").textContent = c.source;
+
+            card.classList.add("open");
+            var pos = dotStagePos(c);
+            var sw = stage.clientWidth, sh = stage.clientHeight;
+            var cw = card.offsetWidth, ch = card.offsetHeight;
+
+            var left, top, anchorX = null, anchorY = null, lineFromX = null, lineFromY = null;
+
+            if (sw < 640) {
+                // narrow screens: no room beside the globe, park the card underneath
+                left = (sw - cw) / 2;
+                top = Math.min(sh - ch - 4, 352);
+            } else {
+                // place the card in the open space on the opposite side of the globe
+                if (pos.x <= sw / 2) {
+                    left = sw - cw - 6;
+                    anchorX = left;
+                } else {
+                    left = 6;
+                    anchorX = left + cw;
+                }
+                top = Math.max(6, Math.min(sh - ch - 6, pos.y - ch / 2));
+                anchorY = top + ch / 2;
+                lineFromX = pos.x;
+                lineFromY = pos.y;
+            }
+            card.style.left = left + "px";
+            card.style.top = top + "px";
+
+            if (anchorX === null) {
+                connector.innerHTML = "";
+            } else {
+                connector.setAttribute("viewBox", "0 0 " + sw + " " + sh);
+                connector.innerHTML =
+                    '<line x1="' + lineFromX + '" y1="' + lineFromY + '" x2="' + anchorX + '" y2="' + anchorY +
+                    '" stroke="navy" stroke-width="1"/>' +
+                    '<circle cx="' + pos.x + '" cy="' + pos.y + '" r="6.5" fill="none" stroke="navy" stroke-width="1"/>';
+            }
+        }
+
+        var selected = -1;
+
+        document.getElementById("card-close").addEventListener("click", function () {
+            selected = -1;
+            render();
+        });
+
+        var dragging = false;
+        var moved = false;
+        var downIdx = null;
+        var lastX = 0, lastY = 0;
+
+        svg.style.cursor = "grab";
+        svg.style.touchAction = "none";
+
+        svg.addEventListener("pointerdown", function (e) {
+            dragging = true;
+            moved = false;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            var t = e.target;
+            downIdx = (t && t.getAttribute && t.getAttribute("data-idx") !== null)
+                ? parseInt(t.getAttribute("data-idx"), 10) : null;
+            svg.setPointerCapture(e.pointerId);
+            svg.style.cursor = "grabbing";
+            e.preventDefault();
+        });
+
+        svg.addEventListener("pointermove", function (e) {
+            if (!dragging) return;
+            var dx = e.clientX - lastX;
+            var dy = e.clientY - lastY;
+            if (Math.abs(dx) > 2 || Math.abs(dy) > 2) moved = true;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            lambda0 -= dx * SENSITIVITY * Math.PI / 180;
+            phi0 = Math.max(-Math.PI / 2, Math.min(Math.PI / 2,
+                phi0 + dy * SENSITIVITY * Math.PI / 180));
+            render();
+        });
+
+        ["pointerup", "pointercancel"].forEach(function (evt) {
+            svg.addEventListener(evt, function (e) {
+                if (evt === "pointerup" && !moved && downIdx !== null) {
+                    selected = (selected === downIdx) ? -1 : downIdx;
+                    render();
+                }
+                dragging = false;
+                downIdx = null;
+                svg.style.cursor = "grab";
+            });
+        });
+
+        render();
+    })();
+    </script>
+</body>
+</html>

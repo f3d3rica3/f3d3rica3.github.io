@@ -133,6 +133,36 @@
 .back-button:hover {
     opacity: 0.5;
 }
+
+.currently-reading {
+    border: 1px solid navy;
+    border-radius: 8px;
+    padding: 20px 25px;
+    max-width: 500px;
+    margin: 20px 0 40px 0;
+}
+
+.reading-status {
+    font-size: 1.1em;
+    margin: 0 0 8px 0;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #4caf50;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.last-updated {
+    font-size: 0.85em;
+    color: #666;
+    margin: 0;
+}
+
     </style>
 </head>
 <body>
@@ -145,30 +175,14 @@
         </nav>
 
         <div class="container">
-            <h1>Research Focus: Intersectional Environmentalism</h1>
-            <h2>Economics</h2>
-                <ul>
-                    <li>Climate Change Economics (of the environment, energy, water, transportation, etc.)</li>
-                    <li>Health Economics</li>
-                    <li>Agri-Food Economics</li>
-                    <li>Gender Economics</li>
-                </ul>
-
-            <h2>Indigeneity, Colonization, and Climate Change --- Climate Justice</h2>
-                <ul>
-                    <li>The decolonial ecological critique (Malcom Ferdinand)</li>
-
-                </ul>
-        
-        <h1>Latest reads:</h1>
-        <h3>From Short Food Supply Chains to Sustainable Agriculture in Urban Food Systems: Food Democracy as a Vector of transition</h3>
-        <h4>By Yuna Chiffoleau, Sarah Millet-Amrani, and Arielle Canard</h4>
-
-        I came across this research paper as I was looking for exmaples of sustainable economic models of agriculture and food chains. "Food democracy" was 
-        what intrigued me the most, and I soon learned that it referred to bringing people, "ordinary actors" into the development and construction of a food
-        chain. 
-        The paper focuses on a small 
-                
+            <h2>Currently Reading</h2>
+            <div class="currently-reading">
+                <p class="reading-status">
+                    <span class="status-dot"></span>
+                    <em>It's Not That Radical: Climate Action to Transform Our World</em> — Mikaela Loach
+                </p>
+                <p class="last-updated">Updated: August 2026</p>
+            </div>
         </div>
     
         <div class="back-button-container">
@@ -176,5 +190,6 @@
         </div>
 
     </main>
+
 </body>
 </html>
