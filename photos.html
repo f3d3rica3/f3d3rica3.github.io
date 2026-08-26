@@ -127,6 +127,9 @@
         //   COVER PHOTO       -> "cover.txt" inside the folder containing
         //                        the filename of the photo to use as the
         //                        collection cover. Defaults to first photo.
+        //
+        // After adding/removing photos, the manifest must be refreshed:
+        //   python3 update-gallery-manifest.py   (or just ask opencode)
         // ============================================================
         const GALLERIES = [
             { title: "Rooftop", folder: "assets/rooftop" },
@@ -157,12 +160,24 @@
             return list.length ? list : null;
         }
 
+        let MANIFEST = null;
+
+        async function loadManifest() {
+            if (MANIFEST) return MANIFEST;
+            const res = await fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/gallery-manifest.json?t=${Date.now()}`);
+            if (!res.ok) throw new Error("Could not load gallery manifest");
+            MANIFEST = await res.json();
+            return MANIFEST;
+        }
+
+        function fileURL(folder, name) {
+            return `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${encodeURIComponent(folder).replace(/%2F/g, "/")}/${encodeURIComponent(name)}`;
+        }
+
         async function loadGallery(g) {
-            const apiURL = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(g.folder).replace(/%2F/g, "/")}?ref=${BRANCH}`;
-            const res = await fetch(apiURL);
-            if (!res.ok) throw new Error("Could not list " + g.folder);
-            const files = (await res.json())
-                .filter(f => f.type === "file" && isImage(f.name));
+            const manifest = await loadManifest();
+            const files = (manifest[g.folder] || [])
+                .filter(f => isImage(f));
             const order = await loadTextFile(g.folder, "order.txt");
             if (order) {
                 files.sort((a, b) => {
@@ -175,7 +190,7 @@
             } else {
                 files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
             }
-            return files.map(f => f.download_url);
+            return files.map(f => fileURL(g.folder, f));
         }
 
         function showIndex() {
