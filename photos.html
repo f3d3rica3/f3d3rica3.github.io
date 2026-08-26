@@ -21,6 +21,8 @@
 
     <h1>Photo Gallery</h1>
 
+    <div id="collection-nav" class="collection-nav"></div>
+
     <div id="galleries"></div>
 
     <div class="back-button-container">
@@ -29,19 +31,24 @@
 
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
+        <span class="lb-arrow lb-prev">&#8249;</span>
         <img class="lightbox-content" id="lightbox-img">
+        <span class="lb-arrow lb-next">&#8250;</span>
     </div>
 
     <script>
-        <!-- ============================================================
-             HOW TO MANAGE THIS GALLERY (no code needed):
-             ADD    -> upload a photo into one of the folders below
-                       (github.com -> folder -> Add file -> Upload)
-             DELETE -> delete the photo file from the folder
-             ORDER  -> add an "order.txt" file to the folder containing
-                       the filenames one per line, in the order you want.
-                       Photos not listed appear at the end, alphabetical.
-        ============================================================= -->
+        // ============================================================
+        // HOW TO CURATE COLLECTIONS & MANAGE PHOTOS (no code needed):
+        //   ADD COLLECTION    -> create a folder in assets/ and add one
+        //                        line to the GALLERIES list below.
+        //   REMOVE COLLECTION -> delete its line from GALLERIES
+        //                        (or empty the folder of photos).
+        //   RENAME COLLECTION -> change its title below.
+        //   ADD PHOTO         -> upload it into the collection's folder.
+        //   DELETE PHOTO      -> delete the file from the folder.
+        //   ORDER PHOTOS      -> "order.txt" inside the folder, one
+        //                        filename per line, top to bottom.
+        // ============================================================
         const GALLERIES = [
             { title: "Summer in NYC", folder: "assets/summer in nyc" },
             { title: "Umbria", folder: "assets/fontanaro" },
@@ -52,6 +59,8 @@
         const REPO = "f3d3rica3/f3d3rica3.github.io";
         const BRANCH = "main";
         const IMAGE_EXTENSIONS = [".jpg", ".jpeg", ".png", ".gif", ".webp", ".avif"];
+
+        window.__galleries = [];
 
         function isImage(name) {
             const lower = name.toLowerCase();
@@ -84,15 +93,16 @@
             } else {
                 files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
             }
-            return files
-                .map(f => `<img loading="lazy" src="${f.download_url}" alt="${g.title} - ${f.name}">`)
-                .join("\n            ");
+            return files.map(f => f.download_url);
         }
 
         async function render() {
             const root = document.getElementById("galleries");
-            for (const g of GALLERIES) {
+            const nav = document.getElementById("collection-nav");
+            for (let gi = 0; gi < GALLERIES.length; gi++) {
+                const g = GALLERIES[gi];
                 const section = document.createElement("section");
+                section.id = "gallery-" + gi;
                 const h2 = document.createElement("h2");
                 h2.textContent = g.title;
                 const div = document.createElement("div");
@@ -100,11 +110,21 @@
                 section.appendChild(h2);
                 section.appendChild(div);
                 root.appendChild(section);
+
                 try {
-                    div.innerHTML = await loadGallery(g);
+                    const urls = await loadGallery(g);
+                    window.__galleries.push({ title: g.title, images: urls });
+                    div.innerHTML = urls.map((u, i) =>
+                        `<img loading="lazy" src="${u}" data-g="${gi}" data-i="${i}" alt="${g.title} - photo ${i + 1}">`
+                    ).join("\n            ");
                 } catch (e) {
                     div.innerHTML = "<p>Couldn't load this gallery.</p>";
                 }
+
+                const link = document.createElement("a");
+                link.href = "#gallery-" + gi;
+                link.textContent = g.title;
+                nav.appendChild(link);
             }
         }
 

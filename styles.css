@@ -99,6 +99,49 @@ h2 {
     max-height: 90%;
 }
 
+.lb-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: "Courier New", monospace;
+    font-size: 4em;
+    color: navy;
+    cursor: pointer;
+    padding: 20px 25px;
+    user-select: none;
+    line-height: 1;
+}
+
+.lb-arrow:hover {
+    opacity: 0.5;
+}
+
+.lb-prev {
+    left: 30px;
+}
+
+.lb-next {
+    right: 30px;
+}
+
+.collection-nav {
+    text-align: center;
+    margin: 20px auto 40px auto;
+}
+
+.collection-nav a {
+    display: inline-block;
+    margin: 0 14px;
+    color: navy;
+    font-size: 1.1em;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+}
+
+.collection-nav a:hover {
+    border-bottom: 1px solid navy;
+}
+
 .back-button-container {
     display: flex;
     justify-content: center; /* Center the button horizontally */
