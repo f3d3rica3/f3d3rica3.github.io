@@ -1,12 +1,11 @@
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
-const images = document.querySelectorAll('.gallery img');
 
-images.forEach((image) => {
-    image.addEventListener('click', () => {
+document.addEventListener('click', (event) => {
+    if (event.target.matches('.gallery img')) {
         lightbox.style.display = 'flex';
-        lightboxImg.src = image.src;
-    });
+        lightboxImg.src = event.target.src;
+    }
 });
 
 function closeLightbox(event) {
