@@ -33,9 +33,15 @@
     </div>
 
     <script>
-        // To manage the gallery, just manage the files inside these folders
-        // (on github.com: Add file -> Upload files, or delete a file).
-        // Photos appear on the page automatically, sorted by filename.
+        <!-- ============================================================
+             HOW TO MANAGE THIS GALLERY (no code needed):
+             ADD    -> upload a photo into one of the folders below
+                       (github.com -> folder -> Add file -> Upload)
+             DELETE -> delete the photo file from the folder
+             ORDER  -> add an "order.txt" file to the folder containing
+                       the filenames one per line, in the order you want.
+                       Photos not listed appear at the end, alphabetical.
+        ============================================================= -->
         const GALLERIES = [
             { title: "Summer in NYC", folder: "assets/summer in nyc" },
             { title: "Umbria", folder: "assets/fontanaro" },
@@ -52,14 +58,33 @@
             return IMAGE_EXTENSIONS.some(ext => lower.endsWith(ext));
         }
 
+        async function loadOrder(folder) {
+            const res = await fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${encodeURIComponent(folder).replace(/%2F/g, "/")}/order.txt`);
+            if (!res.ok) return null;
+            const text = await res.text();
+            const list = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
+            return list.length ? list : null;
+        }
+
         async function loadGallery(g) {
             const apiURL = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(g.folder).replace(/%2F/g, "/")}?ref=${BRANCH}`;
             const res = await fetch(apiURL);
             if (!res.ok) throw new Error(`Could not list ${g.folder}`);
-            const files = await res.json();
+            const files = (await res.json())
+                .filter(f => f.type === "file" && isImage(f.name));
+            const order = await loadOrder(g.folder);
+            if (order) {
+                files.sort((a, b) => {
+                    const ia = order.indexOf(a.name), ib = order.indexOf(b.name);
+                    if (ia !== -1 && ib !== -1) return ia - ib;
+                    if (ia !== -1) return -1;
+                    if (ib !== -1) return 1;
+                    return a.name.localeCompare(b.name, undefined, { numeric: true });
+                });
+            } else {
+                files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+            }
             return files
-                .filter(f => f.type === "file" && isImage(f.name))
-                .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))
                 .map(f => `<img loading="lazy" src="${f.download_url}" alt="${g.title} - ${f.name}">`)
                 .join("\n            ");
         }
