@@ -138,7 +138,7 @@
             { title: "Travelin", folder: "assets/travelin" },
             { title: "Night Tide", folder: "assets/night tide" },
             { title: "Barbacue", folder: "assets/barbacue" },
-            { title: "Poolside", folder: "assets/fontanaro/poolside" },
+            { title: "Poolside", folder: "assets/poolside" },
         ];
 
         const REPO = "f3d3rica3/f3d3rica3.github.io";
@@ -181,14 +181,14 @@
             const order = await loadTextFile(g.folder, "order.txt");
             if (order) {
                 files.sort((a, b) => {
-                    const ia = order.indexOf(a.name), ib = order.indexOf(b.name);
+                    const ia = order.indexOf(a), ib = order.indexOf(b);
                     if (ia !== -1 && ib !== -1) return ia - ib;
                     if (ia !== -1) return -1;
                     if (ib !== -1) return 1;
-                    return a.name.localeCompare(b.name, undefined, { numeric: true });
+                    return a.localeCompare(b, undefined, { numeric: true });
                 });
             } else {
-                files.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
+                files.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
             }
             return files.map(f => fileURL(g.folder, f));
         }
