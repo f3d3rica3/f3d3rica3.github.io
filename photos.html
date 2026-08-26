@@ -7,6 +7,67 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="stylenav.css">
 
+    <style>
+        .collection-list {
+            max-width: 700px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .collection-list a {
+            display: block;
+            font-family: "Cormorant Infant", serif;
+            font-size: 2.6em;
+            color: navy;
+            text-decoration: none;
+            margin: 30px 0;
+            transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+        }
+
+        .collection-list a:hover {
+            opacity: 0.55;
+            letter-spacing: 2px;
+        }
+
+        .collection-count {
+            font-family: "Courier New", monospace;
+            font-size: 0.35em;
+            letter-spacing: 2px;
+            opacity: 0.6;
+            display: block;
+            margin-top: 4px;
+        }
+
+        #gallery-view {
+            display: none;
+        }
+
+        .back-to-collections {
+            display: inline-block;
+            margin: 10px 0 0 0;
+            font-size: 1.1em;
+            color: navy;
+            text-decoration: none;
+            border-bottom: 1px solid navy;
+        }
+
+        .back-to-collections:hover {
+            opacity: 0.7;
+        }
+
+        /* single-collection view: bigger photos for small sets */
+        #gallery-view .gallery {
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 28px;
+            margin: 40px auto;
+            max-width: 900px;
+        }
+
+        @media (max-width: 640px) {
+            .collection-list a { font-size: 1.9em; }
+            #gallery-view .gallery { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+        }
+    </style>
 </head>
 <body>
 
@@ -19,11 +80,16 @@
             <a href="links.html" class="button">Inspiration</a>
         </div>
 
-    <h1>Photo Gallery</h1>
+    <div id="index-view">
+        <h1>Photo Gallery</h1>
+        <div id="collection-list" class="collection-list"></div>
+    </div>
 
-    <div id="collection-nav" class="collection-nav"></div>
-
-    <div id="galleries"></div>
+    <div id="gallery-view">
+        <h1 id="gallery-title"></h1>
+        <p><a href="#" id="back-link" class="back-to-collections">&larr; all collections</a></p>
+        <div id="single-gallery" class="gallery"></div>
+    </div>
 
     <div class="back-button-container">
         <button class="back-button" onclick="history.back()">Back</button>
@@ -33,6 +99,8 @@
     <div id="lightbox" class="lightbox" onclick="closeLightbox(event)">
         <img class="lightbox-content" id="lightbox-img">
     </div>
+
+    <script src="script.js"></script>
 
     <script>
         // ============================================================
@@ -76,7 +144,7 @@
         async function loadGallery(g) {
             const apiURL = `https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(g.folder).replace(/%2F/g, "/")}?ref=${BRANCH}`;
             const res = await fetch(apiURL);
-            if (!res.ok) throw new Error(`Could not list ${g.folder}`);
+            if (!res.ok) throw new Error("Could not list " + g.folder);
             const files = (await res.json())
                 .filter(f => f.type === "file" && isImage(f.name));
             const order = await loadOrder(g.folder);
@@ -94,42 +162,51 @@
             return files.map(f => f.download_url);
         }
 
+        function showIndex() {
+            document.getElementById("gallery-view").style.display = "none";
+            document.getElementById("index-view").style.display = "block";
+            window.scrollTo(0, 0);
+        }
+
+        function showCollection(gi) {
+            const gal = window.__galleries[gi];
+            if (!gal) return;
+            document.getElementById("index-view").style.display = "none";
+            document.getElementById("gallery-title").textContent = gal.title;
+            document.getElementById("single-gallery").innerHTML = gal.images.map((u, i) =>
+                `<img loading="lazy" src="${u}" data-g="${gi}" data-i="${i}" alt="${gal.title} - photo ${i + 1}">`
+            ).join("\n            ");
+            document.getElementById("gallery-view").style.display = "block";
+            window.scrollTo(0, 0);
+        }
+
         async function render() {
-            const root = document.getElementById("galleries");
-            const nav = document.getElementById("collection-nav");
+            const list = document.getElementById("collection-list");
             for (let gi = 0; gi < GALLERIES.length; gi++) {
                 const g = GALLERIES[gi];
-                const section = document.createElement("section");
-                section.id = "gallery-" + gi;
-                const h2 = document.createElement("h2");
-                h2.textContent = g.title;
-                const div = document.createElement("div");
-                div.className = "gallery";
-                section.appendChild(h2);
-                section.appendChild(div);
-                root.appendChild(section);
-
                 try {
                     const urls = await loadGallery(g);
                     window.__galleries.push({ title: g.title, images: urls });
-                    div.innerHTML = urls.map((u, i) =>
-                        `<img loading="lazy" src="${u}" data-g="${gi}" data-i="${i}" alt="${g.title} - photo ${i + 1}">`
-                    ).join("\n            ");
+                    const a = document.createElement("a");
+                    a.href = "#";
+                    a.innerHTML = `${g.title}<span class="collection-count">${urls.length} photos</span>`;
+                    a.addEventListener("click", (e) => { e.preventDefault(); showCollection(gi); });
+                    list.appendChild(a);
                 } catch (e) {
-                    div.innerHTML = "<p>Couldn't load this gallery.</p>";
+                    const p = document.createElement("p");
+                    p.textContent = g.title + " - couldn't load";
+                    list.appendChild(p);
                 }
-
-                const link = document.createElement("a");
-                link.href = "#gallery-" + gi;
-                link.textContent = g.title;
-                nav.appendChild(link);
             }
         }
 
+        document.getElementById("back-link").addEventListener("click", function (e) {
+            e.preventDefault();
+            showIndex();
+        });
+
         render();
     </script>
-
-    <script src="script.js"></script>
 
 </body>
 </html>
