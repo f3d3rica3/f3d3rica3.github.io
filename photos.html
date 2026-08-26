@@ -16,26 +16,37 @@
 
         .collection-list a {
             display: block;
-            font-family: "Cormorant Infant", serif;
-            font-size: 2.6em;
             color: navy;
             text-decoration: none;
-            margin: 30px 0;
-            transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+            margin: 80px 0;
+            transition: opacity 0.25s ease;
         }
 
         .collection-list a:hover {
-            opacity: 0.55;
-            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .collection-cover {
+            width: min(620px, 100%);
+            height: auto;
+            display: block;
+            margin: 0 auto 24px auto;
+            box-shadow: 0 4px 24px rgba(0, 30, 90, 0.25);
+        }
+
+        .collection-title {
+            font-family: "Cormorant Infant", serif;
+            font-size: 2.2em;
+            display: block;
         }
 
         .collection-count {
             font-family: "Courier New", monospace;
-            font-size: 0.35em;
+            font-size: 0.75em;
             letter-spacing: 2px;
             opacity: 0.6;
             display: block;
-            margin-top: 4px;
+            margin-top: 6px;
         }
 
         #gallery-view {
@@ -114,6 +125,9 @@
         //   DELETE PHOTO      -> delete the file from the folder.
         //   ORDER PHOTOS      -> "order.txt" inside the folder, one
         //                        filename per line, top to bottom.
+        //   COVER PHOTO       -> "cover.txt" inside the folder containing
+        //                        the filename of the photo to use as the
+        //                        collection cover. Defaults to first photo.
         // ============================================================
         const GALLERIES = [
             { title: "Summer in NYC", folder: "assets/summer in nyc" },
@@ -133,8 +147,8 @@
             return IMAGE_EXTENSIONS.some(ext => lower.endsWith(ext));
         }
 
-        async function loadOrder(folder) {
-            const res = await fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${encodeURIComponent(folder).replace(/%2F/g, "/")}/order.txt`);
+        async function loadTextFile(folder, name) {
+            const res = await fetch(`https://raw.githubusercontent.com/${REPO}/${BRANCH}/${encodeURIComponent(folder).replace(/%2F/g, "/")}/${name}`);
             if (!res.ok) return null;
             const text = await res.text();
             const list = text.split("\n").map(l => l.trim()).filter(l => l.length > 0);
@@ -147,7 +161,7 @@
             if (!res.ok) throw new Error("Could not list " + g.folder);
             const files = (await res.json())
                 .filter(f => f.type === "file" && isImage(f.name));
-            const order = await loadOrder(g.folder);
+            const order = await loadTextFile(g.folder, "order.txt");
             if (order) {
                 files.sort((a, b) => {
                     const ia = order.indexOf(a.name), ib = order.indexOf(b.name);
@@ -186,10 +200,15 @@
                 const g = GALLERIES[gi];
                 try {
                     const urls = await loadGallery(g);
-                    window.__galleries.push({ title: g.title, images: urls });
+                    const coverName = (await loadTextFile(g.folder, "cover.txt") || [null])[0];
+                    const cover = urls.find(u => u.endsWith("/" + encodeURIComponent(coverName))) || urls[0];
+                    window.__galleries.push({ title: g.title, images: urls, cover });
                     const a = document.createElement("a");
                     a.href = "#";
-                    a.innerHTML = `${g.title}<span class="collection-count">${urls.length} photos</span>`;
+                    a.innerHTML =
+                        `<img class="collection-cover" src="${cover}" alt="${g.title} - cover photo">` +
+                        `<span class="collection-title">${g.title}</span>` +
+                        `<span class="collection-count">${urls.length} photos</span>`;
                     a.addEventListener("click", (e) => { e.preventDefault(); showCollection(gi); });
                     list.appendChild(a);
                 } catch (e) {
