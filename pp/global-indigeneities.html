@@ -174,32 +174,78 @@
         }
 
         .essay {
-            max-width: 700px;
-            margin: 80px auto 0 auto;
+            width: 1100px;
+            max-width: calc(100vw - 190px);
+            margin-top: 80px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: left;
+            border: 1px solid navy;
+            padding: 50px 55px;
         }
 
         .essay h2 {
             margin-top: 0;
             line-height: 1.4;
+            border-bottom: 1px dashed navy;
+            padding-bottom: 20px;
+        }
+
+        .essay p {
+            font-family: "Cormorant Infant", serif;
+            font-size: 1.35em;
+            line-height: 1.75;
+            color: #10254f;
+        }
+
+        .essay em {
+            font-style: italic;
+        }
+
+        .pillars-band {
+            margin: 60px auto 0 auto;
+            max-width: 860px;
+            text-align: center;
+        }
+
+        .pillars-caption {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #444;
+            margin: 0 0 20px 0;
         }
 
         .pillars {
             list-style: none;
             padding: 0;
-            max-width: 320px;
-            margin: 30px auto 40px auto;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            row-gap: 8px;
             counter-reset: pillar;
         }
 
         .pillars li {
             counter-increment: pillar;
-            margin: 12px 0;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
 
         .pillars li::before {
             content: counter(pillar) ". ";
+            opacity: 0.6;
+        }
+
+        .pillars li::before {
+            content: counter(pillar) ". ";
+        }
+
+        @media (max-width: 640px) {
+            .essay {
+                padding: 30px 24px;
+            }
         }
 
         /* Community list */
@@ -267,8 +313,18 @@
 
         <blockquote class="page-quote">
             <p>&ldquo;What if our systems were designed to last forever?&rdquo;</p>
-            <footer>&mdash; Lyla June Johnston, PhD dissertation, 2022</footer>
+            <footer>&mdash; Lyla June Johnston, <em>Architects of Abundance: Indigenous Food Systems, Indigenous Land Management, and the Excavation of Hidden History</em> (PhD dissertation, 2022)</footer>
         </blockquote>
+
+        <div class="pillars-band">
+            <p class="pillars-caption">the four pillars that guide this page &mdash; Dr. Lyla June Johnston</p>
+            <ol class="pillars">
+                <li>Work with nature</li>
+                <li>Expand habitat</li>
+                <li>De-center humans</li>
+                <li>Design for perpetuity</li>
+            </ol>
+        </div>
 
         <section class="essay">
             <h2>Love in the Context of Climate Change &mdash; An Indigenous Relationship to the Earth</h2>
@@ -302,18 +358,6 @@
                 Earth can only be learned through experience, traditions, and stories. It is much
                 more than a concept to be debated; kincentricity is an active form of loving.
             </p>
-
-            <p>
-                Dr. Lyla June Johnston proposes four pillars underlining a kincentric relationship
-                with the Earth:
-            </p>
-
-            <ol class="pillars">
-                <li>Work with nature</li>
-                <li>Expand habitat</li>
-                <li>De-center humans</li>
-                <li>Design for perpetuity</li>
-            </ol>
         </section>
     </div>
 

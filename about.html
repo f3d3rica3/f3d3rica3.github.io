@@ -67,6 +67,18 @@
             margin: 60px 0;
         }
 
+        .section a {
+            color: navy;
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px solid navy;
+            padding-bottom: 1px;
+        }
+
+        .section a:hover {
+            opacity: 0.7;
+        }
+
         .date {
             font-size: 1.2em;
             margin-bottom: 40px;
@@ -86,13 +98,23 @@
             margin: 0;
         }
 
-        .intro-image {
-            float: left;
-            margin: 0 20px 20px 0;
+        .intro-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
         }
 
-        .intro-section {
-            overflow: hidden;
+        .intro-section img {
+            margin: 0;
+            flex-shrink: 0;
+        }
+
+        .intro-section p {
+            margin: 0 0 18px 0;
+        }
+
+        .intro-section p:last-child {
+            margin-bottom: 0;
         }
 
         .back-button-container {
@@ -134,27 +156,30 @@
         
         <h1>About</h1>
 
-        <img src="./assets/self portraits/me in rome milla took.jpeg" alt="Federica Portrait" class="intro-image" />
-
         <div class="intro-section">
-            <p>
-                Hi! My name is Federica Marini and I am from NYC. This is my first time making a personal website, and so over time 
-                it will probably change a lot. I will be using this space to publish series of photos that I have taken, videos that 
-                I have shot and edited, and my research areas of interest. I studied economics and social sciences in my Bachelor and 
-                plan to specialize in environmental economics in my Master degree. I aspire to build a career as a climate change economist 
-                and art curator who creates exhibitions on the themes of intersectional environmentalism. 
-            </p>
-        </div>
+            <img src="./assets/self portraits/me in rome milla took.jpeg" alt="Federica Portrait" />
 
-        <div style="clear: both;"></div>
+            <div>
+            <p>
+                Hi! My name is Federica Marini and I am from NYC. This is my first time making a personal website, and so over time
+                it will probably change a lot.
+            </p>
+            <p>
+                I will be using this space to publish series of photos that I have taken, videos that
+                I have shot and edited, and my personal research projects. I studied economics and social sciences in my Bachelor and
+                am now doing my Masters in Environmental Economics and Policy, with a specialization in Food and Agricultural Economics.
+            </p>
+            <p>
+                I aspire to build a career as a climate change economist
+                and art curator who creates exhibitions on the themes of intersectional environmentalism.
+            </p>
+            </div>
+        </div>
 
         <div class="section">
             <h2>Current Projects</h2>
             <p>
-                First off, this website has been one of my most challenging personal projects. It is built with html, css, and javascript
-                code. This is where I will publish my work from event archivation through video, photography, and my developing research about 
-                climate change. In addition, I am working on a case study about my family's restaurant, where I am estimating its inventory of greenhouse
-                gas emissions. 
+                I am creating <a href="pp/global-indigeneities.html">"Global Indigeneities: Nature-Based Climate Solutions"</a> where each pin on the map represents an Indigenous community who we can learn a lot from as we re-imagine the way that we can live on this planet.
             </p>
         </div>
 
