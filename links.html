@@ -109,6 +109,35 @@
     opacity: 0.5;
 }
 
+        .currently-reading {
+            border: 1px solid navy;
+            border-radius: 8px;
+            padding: 20px 25px;
+            max-width: 500px;
+            margin: 20px 0 40px 0;
+        }
+
+        .reading-status {
+            font-size: 1.1em;
+            margin: 0 0 8px 0;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #4caf50;
+            border-radius: 50%;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .last-updated {
+            font-size: 0.85em;
+            color: #666;
+            margin: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -117,7 +146,6 @@
             <a href="index.html" class="button">Home</a>
             <a href="about.html" class="button">About</a>
             <a href="archive.html" class="button">Archive</a>
-            <a href="research.html" class="button">Research</a>
             <a href="pp/pp.html" class="button">Personal Projects</a>
             <a href="links.html" class="button">Inspiration</a>
         </div>
@@ -133,6 +161,15 @@
             <li><a href="econgen.html".html">Economics</a></li>
             <li><a href="sur.html".html">(Sustainable) Urban Regeneration</a></li>
         </ul>
+
+        <h2>Currently Reading</h2>
+        <div class="currently-reading">
+            <p class="reading-status">
+                <span class="status-dot"></span>
+                <em>It's Not That Radical: Climate Action to Transform Our World</em> — Mikaela Loach
+            </p>
+            <p class="last-updated">Updated: August 2026</p>
+        </div>
     </div>
 
     <div class="back-button-container">
