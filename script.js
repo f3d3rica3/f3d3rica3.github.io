@@ -29,7 +29,6 @@ document.addEventListener('click', (event) => {
     if (event.target.closest('.lb-prev')) step(-1);
     else if (event.target.closest('.lb-next')) step(1);
 });
-
 document.addEventListener('keydown', (event) => {
     if (lightbox.style.display !== 'flex') return;
     if (event.key === 'ArrowLeft') step(-1);
