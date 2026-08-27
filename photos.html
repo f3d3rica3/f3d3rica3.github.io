@@ -95,7 +95,6 @@
     </div>
 
     <div id="gallery-view">
-        <h1 id="gallery-title"></h1>
         <p><a href="#" id="back-link" class="back-to-collections">&larr; all collections</a></p>
         <div id="single-gallery" class="gallery"></div>
     </div>
@@ -202,7 +201,6 @@
             const gal = window.__galleries[gi];
             if (!gal) return;
             document.getElementById("index-view").style.display = "none";
-            document.getElementById("gallery-title").textContent = gal.title;
             document.getElementById("single-gallery").innerHTML = gal.images.map((u, i) =>
                 `<img loading="lazy" src="${u}" data-g="${gi}" data-i="${i}" alt="${gal.title} - photo ${i + 1}">`
             ).join("\n            ");
