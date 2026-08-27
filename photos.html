@@ -116,12 +116,12 @@
         /* Barbacue: cover tall on left spanning 3 landscape heights, 3 landscapes stacked right, last 2 in bottom row */
         #gallery-view .gallery.barbacue {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
+            grid-template-columns: 1.8fr 1fr;
             gap: 28px;
             max-width: 1050px; /* a bit wider so portrait cover fits without cropping */
         }
         #gallery-view .gallery.barbacue img:nth-child(1) {
-            grid-column: 1 / span 8;
+            grid-column: 1;
             grid-row: 1 / span 3;
             width: 100%;
             height: auto;
@@ -129,11 +129,21 @@
             align-self: start;
             background: transparent;
         }
-        #gallery-view .gallery.barbacue img:nth-child(2) { grid-column: 9 / span 4; grid-row: 1; width: 100%; height: auto; }
-        #gallery-view .gallery.barbacue img:nth-child(3) { grid-column: 9 / span 4; grid-row: 2; width: 100%; height: auto; }
-        #gallery-view .gallery.barbacue img:nth-child(4) { grid-column: 9 / span 4; grid-row: 3; width: 100%; height: auto; }
-        #gallery-view .gallery.barbacue img:nth-child(5) { grid-column: 1 / span 6; grid-row: 4; width: 100%; height: auto; }
-        #gallery-view .gallery.barbacue img:nth-child(6) { grid-column: 7 / span 6; grid-row: 4; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(2) { grid-column: 2; grid-row: 1; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(3) { grid-column: 2; grid-row: 2; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(4) { grid-column: 2; grid-row: 3; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(5),
+        #gallery-view .gallery.barbacue img:nth-child(6) {
+            width: 100%;
+            height: auto;
+        }
+        /* bottom row equal size - handled via JS wrapper */
+        #gallery-view .gallery.barbacue .barbacue-bottom {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
 
         @media (max-width: 640px) {
             .collection-list a { font-size: 1.9em; }
@@ -313,6 +323,15 @@
             }
             if (folder === "assets/barbacue") {
                 gallery.classList.add("barbacue");
+                // make bottom two equal size without touching top spacing: wrap them in equal grid
+                if (!gallery.querySelector(".barbacue-bottom") && imgs.length === 6) {
+                    const bottom = document.createElement("div");
+                    bottom.className = "barbacue-bottom";
+                    // move last two images into wrapper
+                    bottom.appendChild(imgs[4]);
+                    bottom.appendChild(imgs[5]);
+                    gallery.appendChild(bottom);
+                }
                 return;
             }
             if (folder === "assets/calcio" || folder === "assets/wheat" || folder === "assets/travelin" || folder === "assets/night tide") {
