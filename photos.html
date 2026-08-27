@@ -223,7 +223,6 @@
                     a.href = "#";
                     a.innerHTML =
                         `<img class="collection-cover" src="${cover}" alt="${g.title} - cover photo">` +
-                        `<span class="collection-title">${g.title}</span>` +
                         `<span class="collection-count">${urls.length} photos</span>`;
                     a.addEventListener("click", (e) => { e.preventDefault(); showCollection(gi); });
                     list.appendChild(a);
