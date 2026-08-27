@@ -65,17 +65,96 @@
             opacity: 0.7;
         }
 
-        /* single-collection view: bigger photos for small sets */
+        /* single-collection view: default flex (poolside etc.) */
         #gallery-view .gallery {
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
             gap: 28px;
-            margin: 40px auto;
+            justify-content: center;
             max-width: 900px;
+            margin: 40px auto;
         }
+
+        #gallery-view .gallery img {
+            display: block;
+            flex: 0 0 auto;
+            object-fit: cover;
+            cursor: pointer;
+            height: 300px;
+            width: auto;
+        }
+
+        /* Two-column grid for 4 or 6 photo collections */
+        #gallery-view .gallery.two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        #gallery-view .gallery.two-col img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Rooftop: cover extra big on top, then 2x2 grid below */
+        #gallery-view .gallery.rooftop {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        #gallery-view .gallery.rooftop img:first-child {
+            grid-column: span 2;
+            width: 100%;
+            height: auto;
+        }
+        #gallery-view .gallery.rooftop img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Barbacue: cover tall on left spanning 3 landscape heights, 3 landscapes stacked right, last 2 in bottom row */
+        #gallery-view .gallery.barbacue {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+            max-width: 1050px; /* a bit wider so portrait cover fits without cropping */
+        }
+        #gallery-view .gallery.barbacue img:nth-child(1) {
+            grid-column: 1;
+            grid-row: 1 / span 3;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            align-self: start;
+            background: transparent;
+        }
+        #gallery-view .gallery.barbacue img:nth-child(2) { grid-column: 2; grid-row: 1; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(3) { grid-column: 2; grid-row: 2; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(4) { grid-column: 2; grid-row: 3; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(5) { grid-column: 1; grid-row: 4; width: 100%; height: auto; }
+        #gallery-view .gallery.barbacue img:nth-child(6) { grid-column: 2; grid-row: 4; width: 100%; height: auto; }
 
         @media (max-width: 640px) {
             .collection-list a { font-size: 1.9em; }
-            #gallery-view .gallery { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+            #gallery-view .gallery { gap: 16px; max-width: 100%; }
+            #gallery-view .gallery img { height: 200px; }
+            #gallery-view .gallery.two-col,
+            #gallery-view .gallery.rooftop,
+            #gallery-view .gallery.barbacue {
+                gap: 16px;
+            }
+            #gallery-view .gallery.barbacue img:nth-child(1) {
+                grid-column: span 2;
+                grid-row: auto;
+                height: auto;
+            }
+            #gallery-view .gallery.barbacue img:nth-child(2),
+            #gallery-view .gallery.barbacue img:nth-child(3),
+            #gallery-view .gallery.barbacue img:nth-child(4),
+            #gallery-view .gallery.barbacue img:nth-child(5),
+            #gallery-view .gallery.barbacue img:nth-child(6) {
+                grid-column: auto;
+                grid-row: auto;
+            }
         }
     </style>
 </head>
@@ -194,19 +273,85 @@
         function showIndex() {
             document.getElementById("gallery-view").style.display = "none";
             document.getElementById("index-view").style.display = "block";
+            const bb = document.querySelector(".back-button-container");
+            if (bb) bb.style.display = "flex";
             window.scrollTo(0, 0);
         }
 
         function showCollection(gi) {
             const gal = window.__galleries[gi];
             if (!gal) return;
+            window.__currentFolder = GALLERIES[gi].folder;
+            const bb = document.querySelector(".back-button-container");
+            if (bb) bb.style.display = "none";
             document.getElementById("index-view").style.display = "none";
             document.getElementById("single-gallery").innerHTML = gal.images.map((u, i) =>
                 `<img loading="lazy" src="${u}" data-g="${gi}" data-i="${i}" alt="${gal.title} - photo ${i + 1}">`
             ).join("\n            ");
             document.getElementById("gallery-view").style.display = "block";
             window.scrollTo(0, 0);
+            waitAndLayout();
         }
+
+        function layoutGallery() {
+            const gallery = document.getElementById("single-gallery");
+            const folder = window.__currentFolder || "";
+            const imgs = [...gallery.querySelectorAll("img")];
+            if (!imgs.length) return;
+            // reset classes and inline sizes
+            gallery.className = "gallery";
+            imgs.forEach(img => { img.style.width = ""; img.style.height = ""; });
+
+            if (folder === "assets/rooftop") {
+                gallery.classList.add("rooftop");
+                return;
+            }
+            if (folder === "assets/barbacue") {
+                gallery.classList.add("barbacue");
+                return;
+            }
+            if (folder === "assets/calcio" || folder === "assets/wheat" || folder === "assets/travelin" || folder === "assets/night tide") {
+                gallery.classList.add("two-col");
+                return;
+            }
+            // generic: collections of 4 or 6 keep two columns
+            if (imgs.length === 4 || imgs.length === 6) {
+                gallery.classList.add("two-col");
+                return;
+            }
+            // default (e.g. poolside 7): flex, no shrinking, generous gap
+            const isMobile = window.innerWidth < 640;
+            const targetH = isMobile ? 200 : 300;
+            imgs.forEach(img => {
+                const aspect = (img.naturalWidth && img.naturalHeight) ? img.naturalWidth / img.naturalHeight : 1.5;
+                img.style.height = targetH + "px";
+                img.style.width = Math.round(aspect * targetH) + "px";
+            });
+        }
+
+        function waitAndLayout() {
+            const gallery = document.getElementById("single-gallery");
+            const imgs = [...gallery.querySelectorAll("img")];
+            if (!imgs.length) return;
+            let pending = imgs.length;
+            const done = () => { pending--; if (pending <= 0) layoutGallery(); };
+            imgs.forEach(img => {
+                if (img.complete && img.naturalWidth) done();
+                else {
+                    img.addEventListener("load", done, { once: true });
+                    img.addEventListener("error", done, { once: true });
+                }
+            });
+            setTimeout(layoutGallery, 800);
+        }
+
+        let _layoutTimer;
+        window.addEventListener("resize", () => {
+            clearTimeout(_layoutTimer);
+            _layoutTimer = setTimeout(() => {
+                if (document.getElementById("gallery-view").style.display !== "none") layoutGallery();
+            }, 100);
+        });
 
         async function render() {
             const list = document.getElementById("collection-list");
